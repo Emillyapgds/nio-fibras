@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIO - Planos de Internet</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f8f0 100%);
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        header {
+            position: relative;
+            background: linear-gradient(135deg, #008000 0%, #004d00 100%);
+            padding: 50px 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            color: #ffffff;
+        }
+        .whatsapp-button {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background-color: #25d366;
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+        }
+        .whatsapp-button img {
+            width: 35px;
+            height: 35px;
+        }
+        .logo-nio {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .subtitle {
+            font-size: 22px;
+            font-weight: 300;
+            margin-top: 10px;
+        }
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        .hero-image {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .hero-text {
+            flex: 1;
+            padding: 0 40px;
+            text-align: left;
+        }
+        .hero-text h1 {
+            font-size: 32px;
+            color: #008000;
+            margin-bottom: 20px;
+        }
+        .hero-text p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        .cta-button {
+            background: linear-gradient(135deg, #008000 0%, #004d00 100%);
+            color: #ffffff;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.3);
+        }
+        .features {
+            background: #ffffff;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .features h2 {
+            font-size: 28px;
+            color: #008000;
+            margin-bottom: 40px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* Uma coluna para uma embaixo da outra */
+            gap: 30px;
+            max-width: 800px; /* Ajustado para preencher mais espaço */
+            margin: 0 auto;
+        }
+        .feature-item {
+            background: linear-gradient(135deg, #f9f9f9 0%, #e8f5e8 100%);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: left;
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .feature-item i {
+            font-size: 50px;
+            color: #008000;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        .feature-item .content {
+            flex: 1;
+        }
+        .feature-item h3 {
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        .feature-item p {
+            font-size: 16px;
+            margin: 0;
+        }
+        .plans {
+            background: linear-gradient(135deg, #f0f8f0 0%, #ffffff 100%);
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .plan-category h2 {
+            font-size: 32px;
+            color: #008000;
+            margin-bottom: 40px;
+            font-weight: 700;
+        }
+        .plan-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .plan {
+            background: #ffffff;
+            border: 2px solid #008000;
+            border-radius: 20px;
+            padding: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .plan:hover {
+            background: linear-gradient(135deg, #008000 0%, #004d00 100%);
+            color: #ffffff;
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+        .plan h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        .plan p {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        footer {
+            background: #333;
+            color: #ffffff;
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 16px;
+        }
+        footer a {
+            color: #25d366;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="whatsapp-button" onclick="window.open('https://wa.me/message/QF2XY7K2FBMRI1', '_blank')">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+        </button>
+        <div class="logo-nio">NIO</div>
+        <div class="subtitle">Como podemos ajudar?</div>
+    </header>
+
+    <section class="hero-section">
+        <div class="hero-image">
+            <img src="https://images.pexels.com/photos/3184338/pexels-photo-3184338.jpeg?auto=compress&cs=tinysrgb&w=500" alt="Atendente de telemarketing fazendo atendimento">
+        </div>
+        <div class="hero-text">
+            <h1>Conecte-se com a NIO</h1>
+            <p>Descubra nossos planos de internet de alta velocidade, atendimento humanizado e suporte técnico excepcional. Escolha o plano ideal para sua casa ou empresa.</p>
+            <button class="cta-button" onclick="window.open('https://wa.me/message/QF2XY7K2FBMRI1', '_blank')">Fale Conosco</button>
+        </div>
+    </section>
+
+    <section class="features">
+        <h2>Nossos Serviços</h2>
+        <div class="features-grid">
+            <div class="feature-item" onclick="window.open('https://wa.me/message/QF2XY7K2FBMRI1', '_blank')">
+                <i class="fas fa-barcode"></i>
+                <div class="content">
+                    <h3>Segunda Via Débito NIO</h3>
+                    <p>Emissão rápida e segura da segunda via do seu débito.</p>
+                </div>
+            </div>
+            <div class="feature-item" onclick="window.open('https://wa.me/message/QF2XY7K2FBMRI1', '_blank')">
+                <i class="fas fa-handshake"></i>
+                <div class="content">
+                    <h3>Atendimento Humanizado</h3>
+                    <p>Suporte personalizado com profissionais dedicados.</p>
+                </div>
+            </div>
+            <div class="feature-item" onclick="window.open('https://wa.me/message/QF2XY7K2FBMRI1', '_blank')">
+                <i class="fas fa-wifi"></i>
+                <div class="content">
+                    <h3>Assine Internet Fibra</h3>
+                    <p>Conectividade fibra óptica de alta performance.</p>
+                </div>
+            </div>
+            <div class="feature-item" onclick="window.open('https://wa.me/message/QF2XY7K2FBMRI1', '_blank')">
+                <i class="fas fa-headphones"></i>
+                <div class="content">
+                    <h3>Suporte Técnico</h3>
+                    <p>Assistência técnica 24/7 para resolver qualquer problema.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="plans">
+        <div class="plan-category">
+            <h2>Planos Residenciais</h2>
+            <div class="plan-list">
+                <div class="plan" onclick="window.open('https://wa.me/message/QF2XY7K2FBMRI1', '_blank')">
+                    <h3>Básico</h3>
+                    <p>Plano básico para uso residencial com velocidade adequada para navegação e streaming leve.</p>
+                </div>
+                <div class="plan" onclick="window.open('https://wa.me/message/QF2XY7K2FBMRI1', '_blank')">
+                    <h3>Premium</h3>
+                    <p>Plano premium com maior velocidade para múltiplos dispositivos e jogos online.</p>
+                </div>
+                <div class="plan" onclick="window.open('https://wa.me/message/QF2XY7K2FBMRI1', '_blank')">
+                    <h3>Ultra</h3>
+                    <p>Plano ultra com a máxima velocidade para streaming 4K e trabalho remoto intenso.</p>
+                </div>
+            </div>
+        </div>
+        <div class="plan-category">
+            <h2>Planos Empresariais</h2>
+            <div class="plan-list">
+                <div class="plan" onclick="window.open('https://wa.me/message/QF2XY7K2FBMRI1', '_blank')">
+                    <h3>Start</h3>
+                    <p>Plano start para pequenas empresas com conectividade básica e suporte para e-mail e navegação.</p>
+                </div>
+                <div class="plan" onclick="window.open('https://wa.me/message/QF2XY7K2FBMRI1', '_blank')">
+                    <h3>Pro</h3>
+                    <p>Plano pro para médias empresas com alta velocidade e VPN para segurança.</p>
+                </div>
+                <div class="plan" onclick="window.open('https://wa.me/message/QF2XY7K2FBMRI1', '_blank')">
+                    <h3>Premium</h3>
+                    <p>Plano premium para grandes empresas com fibra dedicada e SLA garantido.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 NIO. Todos os direitos reservados. <a href="https://wa.me/message/QF2XY7K2FBMRI1" target="_blank">Contato via WhatsApp</a></p>
+    </footer>
+</body>
+</html>
